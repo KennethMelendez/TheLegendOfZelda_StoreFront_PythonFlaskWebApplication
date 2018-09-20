@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="col-md">
+    <div class="row">
+        <div class="col-4">
+            <img src="static/ravio.gif" alt="">
+        </div>
+        <div class="col-8 text-center" style="margin-top: 6%;">
+                {% with messages  = get_flashed_messages() %}
+                <div class="flashes">
+                   {% for message in messages %}
+                   <div class="alert alert-success" role="alert">
+                        {{ message }}
+                   </div>
+                       
+                   {% endfor %}
+                </div>
+            {% endwith %}
+        </div>
+    </div>
+    <div class="row">
+            {% for item in shop_items %}
+            <div class="col-sm">
+                <a href="purchase_item/{{item.id}}"><img src="{{item.filepath}}" alt=""></a>
+                <hr>
+                <small>Rupees: {{item.price}}</small>
+                <a href="confirm_purchase/{{item.id}}" class="btn btn-success">Buy Item</a>
+            </div>
+            {% endfor %}
+    </div>
+    <div class="row" style="margin-top: 6%;">
+            <div class="col text-center">
+                    <div id="usersInventory"><h1>{{amount}}</h1></div>
+                    <a href="add_rupee/{{1}}" class="btn btn-success">Add 1 Rupee</a>
+                    <a href="add_rupee/{{5}}" class="btn btn-primary">Add 5 Rupee</a>
+                    <a href="add_rupee/{{20}}" class="btn btn-danger">Add 20 Rupee</a>
+
+                    
+            </div>
+    </div>
+</div>
+{% endblock %}
